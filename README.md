@@ -5,6 +5,7 @@ A student that completes this project shows that they can:
 * Use and implement abstract classes
 * Use and implement Lambda Expressions
 
+
 ## Introduction
 
 Using a combination of abstract classes and lambda expressions, students will create and manipulate a list of animals using object oriented design principles.
