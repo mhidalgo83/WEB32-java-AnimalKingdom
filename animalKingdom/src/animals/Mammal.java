@@ -29,6 +29,16 @@ public class Mammal extends Animal {
 
     @Override
     public String toString() {
-        return "Mammal name: " + name + " Id: " + id + " Year named: " + year;
+        return "\nAnimal{id= " + id + ", name= " + name + ", yearNamed= " + year + " }";
+    }
+
+    @Override
+    public int getYearNamed() {
+        return year;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

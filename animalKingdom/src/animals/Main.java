@@ -1,9 +1,21 @@
 package animals;
 
+import java.util.Collections;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+
+    public static List<Animal> filteredAnimals = new ArrayList<>();
+
+    public static void filterAnimals(List<Animal> animals, CheckAnimals tester) {
+        filteredAnimals.clear();
+        for (Animal animal : animals) {
+            if (tester.test(animal)) {
+                filteredAnimals.add(animal);
+            }
+        }
+    }
 
     public static void main(String[] args) {
 
@@ -45,7 +57,43 @@ public class Main {
         animalList.add(catfish);
         animalList.add(perch);
 
-        System.out.println();
+        animalList.sort((a1, a2) -> a2.getYearNamed() - a1.getYearNamed());
+        System.out.println("\n*** List all the animals in descending order by year named ***");
         System.out.println(animalList);
+
+        animalList.sort((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName()));
+        System.out.println("\n*** List all the animals alphabetically ***");
+        System.out.println(animalList);
+
+        animalList.sort((a1, a2) -> a1.getMovement().compareToIgnoreCase(a2.getMovement()));
+        System.out.println("\n*** List all the animals order by how they move ***");
+        System.out.println(animalList);
+
+        filterAnimals(animalList, animal -> animal.getBreath().equals("lungs"));
+        System.out.println("\n*** List only those animals the breath with lungs ***");
+        filteredAnimals.forEach(animal -> System.out.println(animal.getName() + " " + animal.getReproduction() + " "
+                + animal.getMovement() + " " + animal.getBreath() + " " + animal.getYearNamed()));
+
+        filterAnimals(animalList, animal -> animal.getBreath().equals("lungs") && animal.getYearNamed() == 1758);
+        System.out.println("\n*** List only those animals that breath with lungs and were named in 1758 ***");
+        filteredAnimals.forEach(animal -> System.out.println(animal.getName() + " " + animal.getReproduction() + " "
+                + animal.getMovement() + " " + animal.getBreath() + " " + animal.getYearNamed()));
+
+        filterAnimals(animalList,
+                animal -> animal.getBreath().equals("lungs") && animal.getReproduction().equals("eggs"));
+        System.out.println("\n*** List only those animals that lay eggs and breath with lungs ***");
+        filteredAnimals.forEach(animal -> System.out.println(animal.getName() + " " + animal.getReproduction() + " "
+                + animal.getMovement() + " " + animal.getBreath() + " " + animal.getYearNamed()));
+
+        animalList.sort((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName()));
+        filterAnimals(animalList, animal -> animal.getYearNamed() == 1758);
+        System.out.println("\n*** List alphabetically only those animals that were named in 1758 ***");
+        filteredAnimals.forEach(animal -> System.out.println(animal.getName() + " " + animal.getReproduction() + " "
+                + animal.getMovement() + " " + animal.getBreath() + " " + animal.getYearNamed()));
+
+        filterAnimals(animalList, animal -> animal.getBreath().equals("lungs") && animal instanceof Mammal);
+        System.out.println("\n*** For the list of animals, list alphabetically those animals that are mammals ***");
+        filteredAnimals.forEach(animal -> System.out.println(animal.getName() + " " + animal.getReproduction() + " "
+                + animal.getMovement() + " " + animal.getBreath() + " " + animal.getYearNamed()));
     }
 }

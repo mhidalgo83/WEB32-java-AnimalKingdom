@@ -12,4 +12,6 @@ abstract class Animal {
     abstract String getMovement();
     abstract String getReproduction();
     abstract String getBreath();
+    abstract int getYearNamed();
+    abstract String getName();
 }
